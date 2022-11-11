@@ -6,7 +6,7 @@
       status-icon
       :rules="rules"
       ref="ruleForm"
-      label-width="70px"
+      label-width="80px"
       class="demo-ruleForm"
     >
       <el-form-item label="账号" prop="account">
@@ -41,8 +41,30 @@
 export default {
   data() {
     return {
-      ruleForm: {},
-      rules: {},
+      ruleForm: {
+        account: '',
+        password: ''
+      },
+      rules: {
+        account: [
+          { required: true, message: '请输入账号', trigger: 'blur' },
+          {
+            min: 11,
+            max: 11,
+            message: '请输出电话号码的正确长度',
+            trigger: 'blur'
+          }
+        ],
+        password: [
+          { required: true, message: '请输入密码', trigger: 'blur' },
+          {
+            min: 3,
+            max: 10,
+            message: '请输出 3 ~ 10 个字符的密码',
+            trigger: 'blur'
+          }
+        ]
+      },
       isKeepPassword: false
     }
   }

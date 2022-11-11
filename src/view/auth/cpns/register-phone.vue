@@ -6,7 +6,7 @@
       status-icon
       :rules="rules"
       ref="ruleForm"
-      label-width="70px"
+      label-width="80px"
       class="demo-ruleForm"
     >
       <el-form-item label="账号" prop="account">
@@ -41,9 +41,45 @@
 <script>
 export default {
   data() {
+    var validatePass = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('请再次输入密码'))
+      } else if (value !== this.ruleForm.password) {
+        callback(new Error('两次输入密码不一致!'))
+      } else {
+        callback()
+      }
+    }
     return {
-      ruleForm: {},
-      rules: {}
+      ruleForm: {
+        account: '',
+        password: '',
+        checkPass: ''
+      },
+      rules: {
+        account: [
+          { required: true, message: '请输入账号', trigger: 'blur' },
+          {
+            min: 11,
+            max: 11,
+            message: '请输出电话号码的正确长度',
+            trigger: 'blur'
+          }
+        ],
+        password: [
+          { required: true, message: '请输入密码', trigger: 'blur' },
+          {
+            min: 3,
+            max: 10,
+            message: '请输出 3 ~ 10 个字符的密码',
+            trigger: 'blur'
+          }
+        ],
+        checkPass: [
+          { required: true, message: '请再次输入密码', trigger: 'blur' },
+          { validator: validatePass, trigger: 'blur' }
+        ]
+      }
     }
   }
 }
