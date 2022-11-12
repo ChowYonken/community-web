@@ -9,7 +9,7 @@ module.exports = defineConfig({
         router: '@/router',
         assets: '@/assets',
         network: '@/network',
-        store: '@store'
+        store: '@/store'
       }
     }
   }

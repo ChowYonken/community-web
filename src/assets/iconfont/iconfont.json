@@ -1,0 +1,23 @@
+{
+  "id": "3766931",
+  "name": "community-web",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "10055798",
+      "name": "注册",
+      "font_class": "zhuce",
+      "unicode": "e6b5",
+      "unicode_decimal": 59061
+    },
+    {
+      "icon_id": "7817226",
+      "name": "手机登录",
+      "font_class": "shoujidenglu",
+      "unicode": "e614",
+      "unicode_decimal": 58900
+    }
+  ]
+}
