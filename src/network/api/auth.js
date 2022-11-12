@@ -1,5 +1,6 @@
 import request from '../request'
 
+// 登录
 export function login(account, password) {
   return request({
     url: '/login',
@@ -8,5 +9,14 @@ export function login(account, password) {
       account,
       password
     }
+  })
+}
+
+// 注册
+export function register(account, password) {
+  return request({
+    url: '/register',
+    method: 'post',
+    data: { account, password }
   })
 }

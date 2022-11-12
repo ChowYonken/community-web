@@ -36,13 +36,18 @@
       </el-form-item>
     </el-form>
     <!-- 提交登录操作 -->
-    <el-button type="primary" class="login-btn"> 确认注册 </el-button>
+    <el-button type="primary" class="login-btn" @click="submitHandle">
+      确认注册
+    </el-button>
   </div>
 </template>
 
 <script>
+import { register } from '@/network/api/auth'
+
 export default {
   data() {
+    // 验证确认密码
     var validatePass = (rule, value, callback) => {
       if (value === '') {
         callback(new Error('请再次输入密码'))
@@ -81,6 +86,36 @@ export default {
           { required: true, message: '请再次输入密码', trigger: 'blur' },
           { validator: validatePass, trigger: 'blur' }
         ]
+      }
+    }
+  },
+  methods: {
+    submitHandle() {
+      const account = this.ruleForm.account
+      const password = this.ruleForm.password
+      const checkPass = this.ruleForm.checkPass
+      if (account && password && checkPass && password === checkPass) {
+        register(account, password)
+          .then((res) => {
+            const message = res.data.message
+            console.log(res)
+            if (res.data.status === 200) {
+              this.$message({
+                showClose: true,
+                message: message,
+                type: 'success'
+              })
+            } else {
+              this.$message({
+                showClose: true,
+                message: message,
+                type: 'warning'
+              })
+            }
+          })
+          .catch((err) => {
+            console.log(err)
+          })
       }
     }
   }

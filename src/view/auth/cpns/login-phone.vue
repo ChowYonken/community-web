@@ -93,11 +93,15 @@ export default {
       if (account && password) {
         login(account, password)
           .then((res) => {
-            console.log(res)
+            const message = res.data.message
             if (res.data.status === 100) {
               this.$router.push('/main')
+              this.$message({
+                showClose: true,
+                message: message,
+                type: 'success'
+              })
             } else {
-              const message = res.data.message
               this.$message({
                 showClose: true,
                 message: message,
