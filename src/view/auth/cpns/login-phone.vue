@@ -95,7 +95,9 @@ export default {
           .then((res) => {
             const message = res.data.message
             if (res.data.status === 100) {
-              localStorage.setItem('token', res.data.token)
+              const token = res.data.token
+              localStorage.setItem('token', token)
+              this.$store.commit('changeToken', token)
               this.$router.push('/main')
               this.$message({
                 showClose: true,
