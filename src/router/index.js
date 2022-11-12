@@ -1,5 +1,7 @@
 import Router from 'vue-router'
 
+import { Message } from 'element-ui'
+
 const Login = () => import('@/view/auth/login')
 const Main = () => import('@/view/main/main')
 const NotFound = () => import('@/view/not-found/not-found')
@@ -32,6 +34,20 @@ const routes = [
 const router = new Router({
   routes,
   mode: 'history'
+})
+
+router.beforeEach((to, from, next) => {
+  const token = localStorage.getItem('token')
+  if (to.path !== '/login' && !token) {
+    Message({
+      showClose: true,
+      message: '住客您好，请先登录~',
+      type: 'warning'
+    })
+    next('/login')
+  } else {
+    next()
+  }
 })
 
 export default router

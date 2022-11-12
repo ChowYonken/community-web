@@ -95,6 +95,7 @@ export default {
           .then((res) => {
             const message = res.data.message
             if (res.data.status === 100) {
+              localStorage.setItem('token', res.data.token)
               this.$router.push('/main')
               this.$message({
                 showClose: true,
