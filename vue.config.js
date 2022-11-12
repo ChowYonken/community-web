@@ -5,7 +5,11 @@ module.exports = defineConfig({
     resolve: {
       alias: {
         components: '@/components',
-        view: '@/view'
+        view: '@/view',
+        router: '@/router',
+        assets: '@/assets',
+        network: '@/network',
+        store: '@store'
       }
     }
   }

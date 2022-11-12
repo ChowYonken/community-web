@@ -21,6 +21,7 @@
           type="password"
           v-model="ruleForm.password"
           autocomplete="off"
+          show-password
           placeholder="请输入6~10位的数字密码"
         ></el-input>
       </el-form-item>
@@ -29,6 +30,7 @@
           type="password"
           v-model="ruleForm.checkPass"
           autocomplete="off"
+          show-password
           placeholder="请再次输入密码"
         ></el-input>
       </el-form-item>

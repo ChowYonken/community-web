@@ -1,3 +1,5 @@
+import Vue from 'vue'
+
 import {
   Button,
   Card,
@@ -7,7 +9,8 @@ import {
   FormItem,
   Input,
   Checkbox,
-  Link
+  Link,
+  Message
 } from 'element-ui'
 
 const coms = [
@@ -19,8 +22,11 @@ const coms = [
   FormItem,
   Input,
   Checkbox,
-  Link
+  Link,
+  Message
 ]
+
+Vue.prototype.$message = Message
 
 export default {
   install(Vue) {

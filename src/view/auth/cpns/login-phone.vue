@@ -21,24 +21,40 @@
           type="password"
           v-model="ruleForm.password"
           autocomplete="off"
+          show-password
           placeholder="请输入6~10位的数字密码"
         ></el-input>
       </el-form-item>
     </el-form>
     <!-- 控制 -->
     <div class="account-control">
-      <el-checkbox v-model="isKeepPassword" class="remember"
+      <el-checkbox
+        v-model="isKeepPassword"
+        class="remember"
+        @change="keepPasswordHandle"
         >记住密码</el-checkbox
       >
       <el-link type="primary">忘记密码</el-link>
     </div>
     <!-- 提交登录操作 -->
-    <el-button type="primary" class="login-btn"> 立即登录 </el-button>
+    <el-button type="primary" class="login-btn" @click="submitHandle">
+      立即登录
+    </el-button>
   </div>
 </template>
 
 <script>
+import { login } from '@/network/api/auth'
+import { Base64 } from 'js-base64'
+
 export default {
+  created() {
+    this.ruleForm.account = localStorage.getItem('account')
+    this.ruleForm.password = Base64.decode(localStorage.getItem('password'))
+    if (this.ruleForm.password !== '') {
+      this.isKeepPassword = true
+    }
+  },
   data() {
     return {
       ruleForm: {
@@ -66,6 +82,48 @@ export default {
         ]
       },
       isKeepPassword: false
+    }
+  },
+  methods: {
+    // 登录
+    submitHandle() {
+      const account = this.ruleForm.account
+      const password = this.ruleForm.password
+      // 账号和密码不为空
+      if (account && password) {
+        login(account, password)
+          .then((res) => {
+            console.log(res)
+            if (res.data.status === 100) {
+              this.$router.push('/main')
+            } else {
+              const message = res.data.message
+              this.$message({
+                showClose: true,
+                message: message,
+                type: 'error'
+              })
+              // 如果密码错误，则不能记住密码
+              localStorage.setItem('account', '')
+              localStorage.setItem('password', '')
+            }
+          })
+          .catch((err) => {
+            console.log(err)
+          })
+      }
+    },
+    // 记住密码
+    keepPasswordHandle() {
+      if (this.isKeepPassword) {
+        // 密码加密
+        let password = Base64.encode(this.ruleForm.password)
+        localStorage.setItem('account', this.ruleForm.account)
+        localStorage.setItem('password', password)
+      } else {
+        localStorage.setItem('account', '')
+        localStorage.setItem('password', '')
+      }
     }
   }
 }
