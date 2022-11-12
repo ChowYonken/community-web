@@ -5,10 +5,14 @@
       <div class="title">疫情防控管理系统</div>
       <!-- 输入框 -->
       <el-tabs stretch>
-        <el-tab-pane label="登录">
+        <el-tab-pane>
+          <template #label>
+            <i class="iconfont icon-shoujidenglu"></i> 登录</template
+          >
           <login-phone></login-phone>
         </el-tab-pane>
-        <el-tab-pane label="注册">
+        <el-tab-pane>
+          <template #label> <i class="iconfont icon-zhuce"></i> 注册</template>
           <register-phone></register-phone>
         </el-tab-pane>
       </el-tabs>
@@ -46,5 +50,9 @@ export default {
 
 div/deep/.el-tabs__item {
   color: #fff;
+}
+
+div/deep/.el-tabs__item.is-active {
+  color: #409eff;
 }
 </style>
