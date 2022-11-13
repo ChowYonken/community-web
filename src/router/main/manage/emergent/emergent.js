@@ -1,4 +1,4 @@
-const emergent = () => import('@/views/main/manage/emergent/emergent.vue')
+const emergent = () => import('@/view/main/manage/emergent/emergent.vue')
 export default {
   path: '/main/manage/emergent',
   name: 'emergent',

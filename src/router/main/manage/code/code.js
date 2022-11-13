@@ -1,4 +1,4 @@
-const code = () => import('@/views/main/manage/code/code.vue')
+const code = () => import('@/view/main/manage/code/code.vue')
 export default {
   path: '/main/manage/code',
   name: 'code',

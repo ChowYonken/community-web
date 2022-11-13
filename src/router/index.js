@@ -1,13 +1,17 @@
 import Router from 'vue-router'
 import Vue from 'vue'
+import { firstMenu } from '@/utils/map-menus'
 
 import { Message } from 'element-ui'
 
 Vue.use(Router)
 
-const Login = () => import('@/view/auth/login')
-const Main = () => import('@/view/main/main')
-const NotFound = () => import('@/view/not-found/not-found')
+const Login = () =>
+  import(/* webpackChunkName: "home-chunk" */ '@/view/auth/login')
+const Main = () =>
+  import(/* webpackChunkName: "home-chunk" */ '@/view/main/main')
+const NotFound = () =>
+  import(/* webpackChunkName: "home-chunk" */ '@/view/not-found/not-found')
 
 const routes = [
   {
@@ -28,7 +32,7 @@ const routes = [
   },
   // not-found页面
   {
-    path: '/:patchMatch(.*)*',
+    path: '*',
     name: 'notFound',
     component: NotFound
   }
@@ -48,6 +52,11 @@ router.beforeEach((to, from, next) => {
       type: 'warning'
     })
     next('/login')
+  } else {
+    next()
+  }
+  if (to.path === '/main') {
+    next(firstMenu.url)
   } else {
     next()
   }

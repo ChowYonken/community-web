@@ -1,4 +1,4 @@
-const user = () => import('@/views/main/manage/user/user.vue')
+const user = () => import('@/view/main/manage/user/user.vue')
 export default {
   path: '/main/manage/user',
   name: 'user',

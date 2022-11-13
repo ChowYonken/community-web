@@ -1,7 +1,10 @@
 import Vuex from 'vuex'
 import Vue from 'vue'
+import router from '@/router'
 
 import { getMenuList } from '@/network/api/menu'
+
+import { mapMenusToRoutes } from '@/utils/map-menus'
 
 Vue.use(Vuex)
 
@@ -25,6 +28,12 @@ const store = new Vuex.Store({
     // 保存用户菜单
     changeUserMenu(state, userMenu) {
       state.userMenu = userMenu
+
+      // 动态添加路由
+      const routes = mapMenusToRoutes(userMenu)
+      routes.forEach((route) => {
+        router.addRoute('main', route)
+      })
     },
     // 保存所有菜单
     changeAllMenu(state, menu) {

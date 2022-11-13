@@ -1,4 +1,4 @@
-const home = () => import('@/views/main/manage/home/home.vue')
+const home = () => import('@/view/main/manage/home/home.vue')
 export default {
   path: '/main/manage/home',
   name: 'home',

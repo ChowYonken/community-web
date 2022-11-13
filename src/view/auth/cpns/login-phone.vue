@@ -102,7 +102,6 @@ export default {
               const token = res.data.token
               localStorage.setItem('token', token)
               this.$store.commit('changeToken', token)
-              this.$router.push('/main')
               this.$message({
                 showClose: true,
                 message: message,
@@ -144,6 +143,7 @@ export default {
           const userMenu = res.data.data
           localStorage.setItem('userMenu', JSON.stringify(res.data.data))
           this.$store.commit('changeUserMenu', userMenu)
+          this.$router.push('/main')
         })
         .catch((err) => {
           console.log(err)
