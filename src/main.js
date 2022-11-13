@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import Router from 'vue-router'
 import store from './store'
 import { setupStore } from './store'
 import '@/assets/css/base.css'
@@ -15,8 +14,6 @@ import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(element)
 
 Vue.config.productionTip = false
-
-Vue.use(Router)
 
 setupStore()
 

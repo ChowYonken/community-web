@@ -6,3 +6,10 @@ export function getMenuList() {
     url: '/menu/list'
   })
 }
+
+// 获取用户菜单
+export function getUserMenu(roleId) {
+  return request({
+    url: '/role/' + roleId + '/menu'
+  })
+}

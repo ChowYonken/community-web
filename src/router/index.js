@@ -1,6 +1,9 @@
 import Router from 'vue-router'
+import Vue from 'vue'
 
 import { Message } from 'element-ui'
+
+Vue.use(Router)
 
 const Login = () => import('@/view/auth/login')
 const Main = () => import('@/view/main/main')

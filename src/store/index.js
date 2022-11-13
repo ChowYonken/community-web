@@ -6,7 +6,7 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     token: '',
-    userInfo: '', // 登录用户信息
+    userInfo: {}, // 登录用户信息
     menu: [], // 所有菜单
     userMenu: [] // 用户菜单
   },
@@ -15,16 +15,37 @@ const store = new Vuex.Store({
     // 保存token
     changeToken(state, token) {
       state.token = token
+    },
+    // 保存登录用户信息
+    changeUserInfo(state, userInfo) {
+      state.userInfo = userInfo
+    },
+    // 保存用户菜单
+    changeUserMenu(state, userMenu) {
+      state.userMenu = userMenu
+    },
+    // 保存所有菜单
+    changeAllMenu(state, menu) {
+      state.menu = menu
     }
   },
   actions: {
-    // 获取所有菜单
     // 页面刷新，重新获取localStorage数据
     loadLocalLogin({ commit }) {
-      const token = localStorage.getItem('token')
       // 获取token
+      const token = localStorage.getItem('token')
       if (token) {
         commit('changeToken', token)
+      }
+      // 获取用户信息
+      const userInfo = JSON.parse(localStorage.getItem('userInfo'))
+      if (userInfo) {
+        commit('changeUserInfo', userInfo)
+      }
+      // 获取用户菜单
+      const userMenu = JSON.parse(localStorage.getItem('userMenu'))
+      if (userMenu) {
+        commit('changeUserMenu', userMenu)
       }
     }
   },

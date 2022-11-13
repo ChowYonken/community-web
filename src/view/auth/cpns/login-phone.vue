@@ -45,6 +45,8 @@
 
 <script>
 import { login } from '@/network/api/auth'
+import { getUserInfo } from '@/network/api/user'
+import { getUserMenu, getMenuList } from '@/network/api/menu'
 import { Base64 } from 'js-base64'
 
 export default {
@@ -81,17 +83,19 @@ export default {
           }
         ]
       },
-      isKeepPassword: false
+      isKeepPassword: false,
+      roleId: null // 保存角色id
     }
   },
   methods: {
     // 登录
-    submitHandle() {
+    async submitHandle() {
       const account = this.ruleForm.account
       const password = this.ruleForm.password
+
       // 账号和密码不为空
       if (account && password) {
-        login(account, password)
+        await login(account, password)
           .then((res) => {
             const message = res.data.message
             if (res.data.status === 100) {
@@ -119,6 +123,41 @@ export default {
             console.log(err)
           })
       }
+
+      // 获取登录用户信息
+      await getUserInfo()
+        .then((res) => {
+          const userInfo = res.data.data
+          // 保存roleId
+          this.roleId = res.data.data.role.id
+          localStorage.setItem('userInfo', JSON.stringify(res.data.data))
+          this.$store.commit('changeUserInfo', userInfo)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+
+      // 获取所有菜单
+      await getMenuList()
+        .then((res) => {
+          const menu = res.data.data
+          this.$store.commit('changeAllMenu', menu)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+
+      // 获取用户菜单
+      await getUserMenu(this.roleId)
+        .then((res) => {
+          // 保存用户菜单
+          const userMenu = res.data.data
+          localStorage.setItem('userMenu', JSON.stringify(res.data.data))
+          this.$store.commit('changeUserMenu', userMenu)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     },
     // 记住密码
     keepPasswordHandle() {
