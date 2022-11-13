@@ -1,6 +1,8 @@
 import Vuex from 'vuex'
 import Vue from 'vue'
 
+import { getMenuList } from '@/network/api/menu'
+
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
@@ -30,12 +32,21 @@ const store = new Vuex.Store({
     }
   },
   actions: {
+    // 获取所有菜单
+    async _getMenuList({ commit }) {
+      const result = await getMenuList()
+      const menu = result.data.data
+      commit('changeAllMenu', menu)
+    },
+
     // 页面刷新，重新获取localStorage数据
-    loadLocalLogin({ commit }) {
+    loadLocalLogin({ commit, dispatch }) {
       // 获取token
       const token = localStorage.getItem('token')
       if (token) {
         commit('changeToken', token)
+        // 获取完整菜单
+        dispatch('_getMenuList')
       }
       // 获取用户信息
       const userInfo = JSON.parse(localStorage.getItem('userInfo'))

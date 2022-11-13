@@ -46,7 +46,7 @@
 <script>
 import { login } from '@/network/api/auth'
 import { getUserInfo } from '@/network/api/user'
-import { getUserMenu, getMenuList } from '@/network/api/menu'
+import { getUserMenu } from '@/network/api/menu'
 import { Base64 } from 'js-base64'
 
 export default {
@@ -132,16 +132,6 @@ export default {
           this.roleId = res.data.data.role.id
           localStorage.setItem('userInfo', JSON.stringify(res.data.data))
           this.$store.commit('changeUserInfo', userInfo)
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-
-      // 获取所有菜单
-      await getMenuList()
-        .then((res) => {
-          const menu = res.data.data
-          this.$store.commit('changeAllMenu', menu)
         })
         .catch((err) => {
           console.log(err)
