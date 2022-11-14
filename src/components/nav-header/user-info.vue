@@ -2,13 +2,14 @@
   <div class="user-info">
     <el-dropdown>
       <span class="el-dropdown-link">
-        {{ userName }}<i class="iconfont icon-xiangxia"></i>
+        {{ this.$store.state.userInfo.realname
+        }}<i class="iconfont icon-xiangxia"></i>
       </span>
       <el-dropdown-menu slot="dropdown">
         <el-dropdown-item
           ><i class="iconfont icon-xiugaimima"></i> 修改密码</el-dropdown-item
         >
-        <el-dropdown-item
+        <el-dropdown-item @click.native="handleExitClick"
           ><i class="iconfont icon-tuichudenglu"></i> 退出登录</el-dropdown-item
         >
       </el-dropdown-menu>
@@ -17,13 +18,27 @@
 </template>
 
 <script>
+import { logout } from '@/network/api/auth.js'
+
 export default {
-  created() {
-    this.userName = this.$store.state.userInfo.realname
-  },
-  data() {
-    return {
-      userName: ''
+  methods: {
+    // 退出登录
+    handleExitClick() {
+      logout()
+        .then((res) => {
+          localStorage.removeItem('token')
+          localStorage.removeItem('userInfo')
+          localStorage.removeItem('userMenu')
+          this.$router.push('/login').catch(() => {})
+          this.$message({
+            showClose: true,
+            type: 'success',
+            message: '退出登录成功'
+          })
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     }
   }
 }

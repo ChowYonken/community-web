@@ -1,7 +1,8 @@
-let firstMenu = null
+let firstMenu = ''
 
 // 映射路由routes
 export function mapMenusToRoutes(userMenus) {
+  firstMenu = ''
   // 需要动态添加的路由
   const routes = []
   // 1.加载所有routes

@@ -87,6 +87,9 @@ export default {
       roleId: null // 保存角色id
     }
   },
+  watch: {
+    '$router.path'(newValue, oldValue) {}
+  },
   methods: {
     // 登录
     async submitHandle() {

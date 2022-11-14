@@ -20,3 +20,10 @@ export function register(account, password) {
     data: { account, password }
   })
 }
+
+// 退出登录
+export function logout() {
+  return request({
+    url: '/logout'
+  })
+}

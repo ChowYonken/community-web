@@ -2,8 +2,6 @@ import Router from 'vue-router'
 import Vue from 'vue'
 import { firstMenu } from '@/utils/map-menus'
 
-import { Message } from 'element-ui'
-
 Vue.use(Router)
 
 const Login = () =>
@@ -43,14 +41,16 @@ const router = new Router({
   mode: 'history'
 })
 
+// 防止重复点击路由报错
+const originalPush = Router.prototype.push
+
+Router.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch((err) => err)
+}
+
 router.beforeEach((to, from, next) => {
   const token = localStorage.getItem('token')
   if (to.path !== '/login' && !token) {
-    Message({
-      showClose: true,
-      message: '住客您好，请先登录~',
-      type: 'warning'
-    })
     next('/login')
   } else {
     next()

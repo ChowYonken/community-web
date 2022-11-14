@@ -58,8 +58,10 @@ export default {
     changeDefaultActive(currentPath) {
       const userMenus = this.$store.state.userMenu
       const menu = mapMenuId(userMenus, currentPath)
-      this.defaultActive = menu.id + ''
-      this.breadCrumb = menu.name
+      if (menu) {
+        this.defaultActive = menu.id + ''
+        this.breadCrumb = menu.name
+      }
     }
   }
 }
