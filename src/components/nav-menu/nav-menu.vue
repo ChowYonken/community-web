@@ -6,6 +6,8 @@
       background-color="#0c2135"
       text-color="#b7bdc3"
       active-text-color="#0a60bd"
+      :collapse-transition="false"
+      :collapse="isCollapse"
     >
       <div v-for="item in getUserMenu" :key="item.id">
         <el-menu-item :index="item.id + ''" @click="handleMenuItemClick(item)">
@@ -21,6 +23,12 @@
 import { mapMenuId } from '@/utils/map-menus'
 
 export default {
+  props: {
+    isCollapse: {
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {
       defaultActive: ''
@@ -29,9 +37,12 @@ export default {
   created() {
     // 获取当前路径
     const currentPath = this.$route.path
-    const userMenus = this.$store.state.userMenu
-    const menu = mapMenuId(userMenus, currentPath)
-    this.defaultActive = menu.id + ''
+    this.changeDefaultActive(currentPath)
+  },
+  watch: {
+    '$route.path'(newVal, oldVal) {
+      this.changeDefaultActive(newVal)
+    }
   },
   computed: {
     getUserMenu() {
@@ -39,8 +50,16 @@ export default {
     }
   },
   methods: {
+    // 监听侧边导航栏
     handleMenuItemClick(item) {
       this.$router.push({ path: item.url })
+    },
+    // 映射id
+    changeDefaultActive(currentPath) {
+      const userMenus = this.$store.state.userMenu
+      const menu = mapMenuId(userMenus, currentPath)
+      this.defaultActive = menu.id + ''
+      this.breadCrumb = menu.name
     }
   }
 }

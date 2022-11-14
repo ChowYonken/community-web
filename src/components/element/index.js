@@ -18,7 +18,12 @@ import {
   Menu,
   Submenu,
   MenuItem,
-  MenuItemGroup
+  MenuItemGroup,
+  Breadcrumb,
+  BreadcrumbItem,
+  Dropdown,
+  DropdownMenu,
+  DropdownItem
 } from 'element-ui'
 
 const coms = [
@@ -39,7 +44,12 @@ const coms = [
   Menu,
   Submenu,
   MenuItem,
-  MenuItemGroup
+  MenuItemGroup,
+  Breadcrumb,
+  BreadcrumbItem,
+  Dropdown,
+  DropdownMenu,
+  DropdownItem
 ]
 
 Vue.prototype.$message = Message
