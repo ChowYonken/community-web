@@ -1,5 +1,6 @@
 let firstMenu = null
 
+// 映射路由routes
 export function mapMenusToRoutes(userMenus) {
   // 需要动态添加的路由
   const routes = []
@@ -29,6 +30,15 @@ export function mapMenusToRoutes(userMenus) {
   getRoute(userMenus)
 
   return routes
+}
+
+// 获取当前路径
+export function mapMenuId(userMenus, currentPath) {
+  for (const menu of userMenus) {
+    if (menu.type === 1 && menu.url === currentPath) {
+      return menu
+    }
+  }
 }
 
 export { firstMenu }

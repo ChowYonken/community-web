@@ -1,10 +1,17 @@
 {
-  "id": "3766931",
-  "name": "community-web",
+  "id": "3743617",
+  "name": "community-manage",
   "font_family": "iconfont",
   "css_prefix_text": "icon-",
   "description": "",
   "glyphs": [
+    {
+      "icon_id": "7817226",
+      "name": "手机登录",
+      "font_class": "shoujidenglu",
+      "unicode": "e615",
+      "unicode_decimal": 58901
+    },
     {
       "icon_id": "10055798",
       "name": "注册",
@@ -13,11 +20,88 @@
       "unicode_decimal": 59061
     },
     {
-      "icon_id": "7817226",
-      "name": "手机登录",
-      "font_class": "shoujidenglu",
+      "icon_id": "10017847",
+      "name": "设备",
+      "font_class": "shebei",
+      "unicode": "e62a",
+      "unicode_decimal": 58922
+    },
+    {
+      "icon_id": "26182298",
+      "name": "公告",
+      "font_class": "gonggao1",
       "unicode": "e614",
       "unicode_decimal": 58900
+    },
+    {
+      "icon_id": "1106895",
+      "name": "紧急",
+      "font_class": "jinji",
+      "unicode": "e62f",
+      "unicode_decimal": 58927
+    },
+    {
+      "icon_id": "12820195",
+      "name": "重大危险源信息管理",
+      "font_class": "zhongdaweixianyuanxinxiguanli",
+      "unicode": "e635",
+      "unicode_decimal": 58933
+    },
+    {
+      "icon_id": "15995157",
+      "name": "健康码",
+      "font_class": "jiankangma",
+      "unicode": "e6f9",
+      "unicode_decimal": 59129
+    },
+    {
+      "icon_id": "12331688",
+      "name": "温度",
+      "font_class": "wendu",
+      "unicode": "e66b",
+      "unicode_decimal": 58987
+    },
+    {
+      "icon_id": "13030039",
+      "name": "成员用户管理",
+      "font_class": "chengyuanyonghuguanli",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "6246292",
+      "name": "公告",
+      "font_class": "gonggao",
+      "unicode": "e649",
+      "unicode_decimal": 58953
+    },
+    {
+      "icon_id": "6752798",
+      "name": "出差外出申请单",
+      "font_class": "chuchawaichushenqingdan",
+      "unicode": "e61a",
+      "unicode_decimal": 58906
+    },
+    {
+      "icon_id": "22774112",
+      "name": "职业健康",
+      "font_class": "zhiyejiankang",
+      "unicode": "e654",
+      "unicode_decimal": 58964
+    },
+    {
+      "icon_id": "25537637",
+      "name": "主页",
+      "font_class": "zhuye",
+      "unicode": "e7dd",
+      "unicode_decimal": 59357
+    },
+    {
+      "icon_id": "27876677",
+      "name": "用户信息",
+      "font_class": "yonghuxinxi",
+      "unicode": "e642",
+      "unicode_decimal": 58946
     }
   ]
 }

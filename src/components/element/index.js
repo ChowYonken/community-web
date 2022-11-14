@@ -10,7 +10,15 @@ import {
   Input,
   Checkbox,
   Link,
-  Message
+  Message,
+  Container,
+  Header,
+  Aside,
+  Main,
+  Menu,
+  Submenu,
+  MenuItem,
+  MenuItemGroup
 } from 'element-ui'
 
 const coms = [
@@ -23,7 +31,15 @@ const coms = [
   Input,
   Checkbox,
   Link,
-  Message
+  Message,
+  Container,
+  Header,
+  Aside,
+  Main,
+  Menu,
+  Submenu,
+  MenuItem,
+  MenuItemGroup
 ]
 
 Vue.prototype.$message = Message

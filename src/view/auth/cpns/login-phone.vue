@@ -143,7 +143,7 @@ export default {
           const userMenu = res.data.data
           localStorage.setItem('userMenu', JSON.stringify(res.data.data))
           this.$store.commit('changeUserMenu', userMenu)
-          this.$router.push('/main')
+          this.$router.push('/main').catch(() => {})
         })
         .catch((err) => {
           console.log(err)
