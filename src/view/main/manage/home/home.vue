@@ -19,6 +19,8 @@
           <div slot="header" class="clearfix">
             <span>社区健康码数量</span>
           </div>
+          <!-- 内容 -->
+          <health-code></health-code>
         </el-card>
       </el-col>
     </el-row>
@@ -27,10 +29,12 @@
 
 <script>
 import City from '@/components/city-echarts/city.vue'
+import HealthCode from '@/components/healthCode-echarts/health-code.vue'
 
 export default {
   components: {
-    City
+    City,
+    HealthCode
   }
 }
 </script>
