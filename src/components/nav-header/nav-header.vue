@@ -2,10 +2,10 @@
   <div class="nav-header">
     <div class="icon" @click="handleFoldClick">
       <template v-if="isFold">
-        <i class="iconfont icon-s-fold"></i>
+        <i class="iconfont icon-s-unfold"></i>
       </template>
       <template v-else>
-        <i class="iconfont icon-s-unfold"></i>
+        <i class="iconfont icon-s-fold"></i>
       </template>
     </div>
     <div class="content">
