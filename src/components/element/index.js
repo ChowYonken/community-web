@@ -31,7 +31,9 @@ import {
   Option,
   DatePicker,
   Cascader,
-  Icon
+  Icon,
+  Radio,
+  RadioGroup
 } from 'element-ui'
 
 const coms = [
@@ -65,7 +67,9 @@ const coms = [
   Option,
   DatePicker,
   Cascader,
-  Icon
+  Icon,
+  Radio,
+  RadioGroup
 ]
 
 Vue.prototype.$message = Message

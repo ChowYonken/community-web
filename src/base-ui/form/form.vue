@@ -48,6 +48,18 @@
                   ></el-option>
                 </el-select>
               </template>
+              <!-- radio单选框 -->
+              <template v-else-if="item.type === 'radio'">
+                <div>
+                  <el-radio-group v-model="modValue[`${item.field}`]">
+                    <template v-for="o in item.options">
+                      <el-radio :label="o.label" :key="o.label">
+                        {{ o.value }}
+                      </el-radio>
+                    </template>
+                  </el-radio-group>
+                </div>
+              </template>
               <!-- datepicker表单 -->
               <template v-else-if="item.type === 'datepicker'">
                 <el-date-picker
@@ -56,6 +68,7 @@
                   v-model="modValue[`${item.field}`]"
                 ></el-date-picker>
               </template>
+              <!-- datetimepicker表单 -->
               <template v-else-if="item.type === 'datetime'">
                 <el-date-picker
                   :type="item.type"

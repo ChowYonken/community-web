@@ -11,6 +11,12 @@ export const infoFormConfig = {
     center: 'center',
     padding: '0 50px 20px 0'
   },
+  labelPosition: 'top',
+  title: '个人信息',
+  btn: {
+    icon: 'el-icon-edit',
+    name: '提交'
+  },
   rules: {
     realname: [
       { required: true, message: '请输入活动名称', trigger: 'blur' },

@@ -27,3 +27,18 @@ export function updateUserInfo(userId, realname, cellphone, address) {
     }
   })
 }
+
+// 健康申报
+export function addHealth(homeTemp, status, riskAreas, healthCode, others) {
+  return request({
+    url: '/main/user/health',
+    method: 'post',
+    data: {
+      homeTemp,
+      status,
+      riskAreas,
+      healthCode,
+      others
+    }
+  })
+}

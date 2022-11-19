@@ -8,9 +8,9 @@
         <div :style="`text-align: ${infoFormConfig.btnStyle.center}`">
           <el-button
             type="primary"
-            icon="el-icon-edit"
+            :icon="`${infoFormConfig.btn.icon}`"
             @click="handleSearchClick"
-            >提交</el-button
+            >{{ infoFormConfig.btn.name }}</el-button
           >
         </div>
       </template>

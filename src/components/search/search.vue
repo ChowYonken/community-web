@@ -2,15 +2,15 @@
   <div class="search">
     <ck-form v-bind="searchFormConfig" v-model="formData">
       <template #header>
-        <h1 class="header">个人信息</h1>
+        <h1 class="header">{{ searchFormConfig.title }}</h1>
       </template>
       <template #footer>
         <div :style="`text-align: ${searchFormConfig.btnStyle.center}`">
           <el-button
             type="primary"
-            icon="el-icon-search"
+            :icon="`${searchFormConfig.btn.icon}`"
             @click="handleSearchClick"
-            >搜索</el-button
+            >{{ searchFormConfig.btn.name }}</el-button
           >
         </div>
       </template>
