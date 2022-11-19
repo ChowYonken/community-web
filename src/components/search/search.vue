@@ -1,0 +1,66 @@
+<template>
+  <div class="search">
+    <ck-form v-bind="searchFormConfig" v-model="formData">
+      <template #header>
+        <h1 class="header">个人信息</h1>
+      </template>
+      <template #footer>
+        <div :style="`text-align: ${searchFormConfig.btnStyle.center}`">
+          <el-button
+            type="primary"
+            icon="el-icon-search"
+            @click="handleSearchClick"
+            >搜索</el-button
+          >
+        </div>
+      </template>
+    </ck-form>
+  </div>
+</template>
+
+<script>
+import CkForm from '@/base-ui/form/form.vue'
+
+export default {
+  components: {
+    CkForm
+  },
+  props: {
+    searchFormConfig: {
+      type: Object,
+      require: true
+    }
+  },
+  data() {
+    return {
+      formItems: this.searchFormConfig.formItems ?? []
+    }
+  },
+  computed: {
+    formData: {
+      get: function () {
+        const formOriginData = this.getFormData()
+        return formOriginData
+      },
+      set: function (val) {
+        return val
+      }
+    }
+  },
+  methods: {
+    getFormData() {
+      // 通过配置文件的field来获取formData里面有什么类型
+      const formOriginData = {}
+      for (const item of this.formItems) {
+        formOriginData[item.field] = ''
+      }
+      return formOriginData
+    },
+    handleSearchClick() {
+      this.$emit('submitBtnClick', this.formData)
+    }
+  }
+}
+</script>
+
+<style scoped></style>

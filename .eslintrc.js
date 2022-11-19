@@ -18,6 +18,7 @@ module.exports = {
     'vue/multi-word-component-names': 0,
     'no-unused-vars': 0,
     'no-self-assign': 0,
-    'no-redeclare': 0
+    'no-redeclare': 0,
+    'vue/valid-v-for': 0
   }
 }

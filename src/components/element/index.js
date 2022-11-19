@@ -26,7 +26,12 @@ import {
   DropdownItem,
   Row,
   Col,
-  tag
+  tag,
+  Select,
+  Option,
+  DatePicker,
+  Cascader,
+  Icon
 } from 'element-ui'
 
 const coms = [
@@ -55,7 +60,12 @@ const coms = [
   DropdownItem,
   Row,
   Col,
-  tag
+  tag,
+  Select,
+  Option,
+  DatePicker,
+  Cascader,
+  Icon
 ]
 
 Vue.prototype.$message = Message
