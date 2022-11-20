@@ -14,8 +14,14 @@ export const infoFormConfig = {
   labelPosition: 'top',
   title: '外出报备',
   btn: {
-    icon: 'el-icon-edit',
-    name: '提交'
+    search: {
+      icon: 'el-icon-edit',
+      name: '提交'
+    },
+    reset: {
+      icon: 'el-icon-refresh',
+      name: '重置'
+    }
   },
   rules: {
     start: [

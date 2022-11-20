@@ -150,7 +150,6 @@ export default {
   },
   watch: {
     modValue(value) {
-      console.log(value)
       this.$emit('update:modelValue', this.modValue)
     }
   }

@@ -6,11 +6,12 @@
       </template>
       <template #footer>
         <div :style="`text-align: ${searchFormConfig.btnStyle.center}`">
+          <!-- 搜索 -->
           <el-button
             type="primary"
-            :icon="`${searchFormConfig.btn.icon}`"
+            :icon="`${searchFormConfig.btn.search.icon}`"
             @click="handleSearchClick"
-            >{{ searchFormConfig.btn.name }}</el-button
+            >{{ searchFormConfig.btn.search.name }}</el-button
           >
         </div>
       </template>
@@ -33,7 +34,8 @@ export default {
   },
   data() {
     return {
-      formItems: this.searchFormConfig.formItems ?? []
+      formItems: this.searchFormConfig.formItems ?? [],
+      formData1: {}
     }
   },
   computed: {
@@ -56,6 +58,13 @@ export default {
       }
       return formOriginData
     },
+    // 重置
+    handleResetClick() {
+      const formOriginData = this.getFormData()
+      this.formData = formOriginData
+      this.$emit('resetBtnClick')
+    },
+    // 搜索
     handleSearchClick() {
       this.$emit('submitBtnClick', this.formData)
     }

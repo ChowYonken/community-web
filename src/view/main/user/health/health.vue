@@ -30,20 +30,21 @@ export default {
   methods: {
     // 提交
     handleSubmitClick(formData) {
-      console.log(formData)
       const { homeTemp, status, riskAreas, healthCode, others } = formData
-      addHealth(homeTemp, status, riskAreas, healthCode, others)
-        .then((res) => {
-          if (res.data.status === 200) {
-            this.$message({
-              message: '健康申报成功',
-              type: 'success'
-            })
-          }
-        })
-        .catch((err) => {
-          console.log(err)
-        })
+      if (homeTemp) {
+        addHealth(homeTemp, status, riskAreas, healthCode, others)
+          .then((res) => {
+            if (res.data.status === 200) {
+              this.$message({
+                message: '健康申报成功',
+                type: 'success'
+              })
+            }
+          })
+          .catch((err) => {
+            console.log(err)
+          })
+      }
     }
   }
 }

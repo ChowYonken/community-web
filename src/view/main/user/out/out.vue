@@ -28,22 +28,23 @@ export default {
   },
   methods: {
     handleSubmitClick(formData) {
-      console.log(formData)
       const { start, end, transportation } = formData
       const startTime = formData.timeRange[0]
       const endTime = formData.timeRange[1]
-      addOut(start, end, startTime, endTime, transportation)
-        .then((res) => {
-          if (res.data.status === 200) {
-            this.$message({
-              message: '外出报备成功',
-              type: 'success'
-            })
-          }
-        })
-        .catch((err) => {
-          console.log(err)
-        })
+      if (start) {
+        addOut(start, end, startTime, endTime, transportation)
+          .then((res) => {
+            if (res.data.status === 200) {
+              this.$message({
+                message: '外出报备成功',
+                type: 'success'
+              })
+            }
+          })
+          .catch((err) => {
+            console.log(err)
+          })
+      }
     }
   }
 }
