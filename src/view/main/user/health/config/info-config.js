@@ -86,16 +86,16 @@ export const infoFormConfig = {
       label: '近14天是否到达高风险地区？',
       options: [
         {
-          label: '绿色',
-          value: '绿色'
+          label: '绿码',
+          value: '绿码'
         },
         {
-          label: '黄色',
-          value: '黄色'
+          label: '黄码',
+          value: '黄码'
         },
         {
-          label: '红色',
-          value: '红色'
+          label: '红码',
+          value: '红码'
         }
       ]
     },
