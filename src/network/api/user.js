@@ -42,3 +42,18 @@ export function addHealth(homeTemp, status, riskAreas, healthCode, others) {
     }
   })
 }
+
+// 外出报备
+export function addOut(start, end, startTime, endTime, transportation) {
+  return request({
+    url: '/main/user/out',
+    method: 'post',
+    data: {
+      start,
+      end,
+      startTime,
+      endTime,
+      transportation
+    }
+  })
+}
