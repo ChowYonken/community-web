@@ -33,7 +33,10 @@ import {
   Cascader,
   Icon,
   Radio,
-  RadioGroup
+  RadioGroup,
+  Table,
+  TableColumn,
+  Pagination
 } from 'element-ui'
 
 const coms = [
@@ -69,7 +72,10 @@ const coms = [
   Cascader,
   Icon,
   Radio,
-  RadioGroup
+  RadioGroup,
+  Table,
+  TableColumn,
+  Pagination
 ]
 
 Vue.prototype.$message = Message
