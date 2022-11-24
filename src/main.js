@@ -20,5 +20,8 @@ setupStore()
 new Vue({
   store,
   router,
-  render: (h) => h(App)
+  render: (h) => h(App),
+  beforeCreate() {
+    Vue.prototype.$bus = this //安装 全局事件总线 this指向vue原型
+  }
 }).$mount('#app')

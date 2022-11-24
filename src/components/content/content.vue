@@ -1,6 +1,10 @@
 <template>
   <div class="content">
-    <ck-table :listData="dataList" v-bind="contentTableConfig">
+    <ck-table
+      :listData="dataList"
+      :listCount="listCount"
+      v-bind="contentTableConfig"
+    >
       <!-- 顶部按钮 -->
       <template #headerHandler>
         <el-button
@@ -59,6 +63,10 @@ export default {
     dataList: {
       type: Array,
       require: true
+    },
+    listCount: {
+      type: Number,
+      default: 0
     }
   },
   data() {

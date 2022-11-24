@@ -12,6 +12,7 @@
       <page-content
         :contentTableConfig="contentTableConfig"
         :dataList="dataList"
+        :listCount="listCount"
         @newBtnClick="handleNewData"
         @editBtnClick="handleEditData"
         @deleteBtnClick="handleDeleteData"
@@ -49,6 +50,7 @@ import { contentTableConfig } from './config/content-config'
 import { modalConfig } from './config/modal-config'
 import {
   getNoticeLit,
+  getNoticeTotal,
   addNotice,
   updateNotice,
   deleteNotice,
@@ -69,7 +71,18 @@ export default {
       dataList: [],
       dialogVisible: false,
       dialogTitle: '',
-      editData: {} // 编辑的数据
+      editData: {}, // 编辑的数据
+      listCount: 0, // 总数
+      offset: 1,
+      limit: 5
+    }
+  },
+  watch: {
+    offset() {
+      this._getNoticeLit()
+    },
+    limit() {
+      this._getNoticeLit()
     }
   },
   created() {
@@ -78,15 +91,40 @@ export default {
     this.modalConfig = modalConfig
     // 请求列表数据
     this._getNoticeLit()
+    // 获取总数
+    this._getNoticeTotal()
+  },
+  mounted() {
+    // 监听每页大小改变
+    this.$bus.$on('sizeChange', (val) => {
+      this.limit = val
+    })
+    // 监听页面改变
+    this.$bus.$on('currentChange', (val) => {
+      this.offset = val
+    })
+  },
+  beforeDestroy() {
+    // 解绑事件
+    this.$bus.$off('sizeChange')
+    this.$bus.$off('currentChange')
   },
   methods: {
     // 请求列表数据
     _getNoticeLit() {
-      const offset = 0
-      const limit = 10
-      getNoticeLit(offset, limit)
+      getNoticeLit(this.offset, this.limit)
         .then((res) => {
           this.dataList = res.data.data
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+    // 获取总数
+    _getNoticeTotal() {
+      getNoticeTotal()
+        .then((res) => {
+          this.listCount = res.data.data.total
         })
         .catch((err) => {
           console.log(err)
@@ -124,9 +162,7 @@ export default {
     },
     // 搜索
     _queryNotice(priority, timeStart, timeEnd) {
-      const offset = 0
-      const limit = 10
-      queryNotice(offset, limit, priority, timeStart, timeEnd)
+      queryNotice(this.offset, this.limit, priority, timeStart, timeEnd)
         .then((res) => {
           this.dataList = res.data.data
         })

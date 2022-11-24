@@ -9,6 +9,14 @@ export function getNoticeLit(offset, limit) {
   })
 }
 
+// 获取公告总数
+export function getNoticeTotal(offset, limit) {
+  return request({
+    url: '/main/notice/total',
+    method: 'get'
+  })
+}
+
 // 添加公告
 export function addNotice(title, content, priority) {
   return request({

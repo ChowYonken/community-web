@@ -11,6 +11,7 @@
         </div>
       </slot>
     </div>
+
     <!-- 数据列表插槽 -->
     <el-table
       :data="listData"
@@ -48,13 +49,28 @@
 
     <!-- 尾部插槽 -->
     <div class="footer" v-if="showFooter">
-      <slot name="footer"> </slot>
+      <slot name="footer">
+        <!-- 分页器 -->
+        <el-pagination
+          :currentPage="currentPage"
+          :page-size="pageSize"
+          :page-sizes="[5, 10, 20]"
+          layout="->, total, sizes, prev, pager, next, jumper"
+          :total="listCount"
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+        />
+      </slot>
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  model: {
+    prop: 'page',
+    event: 'update:page'
+  },
   props: {
     title: {
       type: String,
@@ -84,6 +100,26 @@ export default {
     showFooter: {
       type: Boolean,
       default: true
+    },
+    listCount: {
+      type: Number,
+      default: 0
+    }
+  },
+  data() {
+    return {
+      currentPage: 1, // 当前页码
+      pageSize: 5 // 每页大小
+    }
+  },
+  methods: {
+    // 大小改变
+    handleSizeChange(val) {
+      this.$bus.$emit('sizeChange', val)
+    },
+    // 当前页面改变
+    handleCurrentChange(val) {
+      this.$bus.$emit('currentChange', val)
     }
   }
 }
@@ -106,5 +142,9 @@ export default {
 
 .handler {
   align-items: center;
+}
+
+.footer {
+  margin-top: 15px;
 }
 </style>
