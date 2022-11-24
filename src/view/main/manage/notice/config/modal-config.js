@@ -3,6 +3,11 @@ export const modalConfig = {
   colLayout: { span: 24 },
   itemLayout: {},
   labelWidth: '60px',
+  rules: {
+    title: [{ required: true, message: '请填写标题', trigger: 'blur' }],
+    content: [{ required: true, message: '请填写内容', trigger: 'blur' }],
+    priority: [{ required: true, message: '请选择公告程度', trigger: 'blur' }]
+  },
   formItems: [
     {
       field: 'title',
