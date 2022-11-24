@@ -11,12 +11,12 @@
         >
           重置
         </el-button>
-        <el-button type="primary" @click="handleNewClick">
+        <el-button type="primary" @click="handleNewClick" v-if="role === 1">
           {{ contentTableConfig.newBtnTitle ?? '新建数据' }}
         </el-button>
       </template>
       <!-- 操作栏按钮 -->
-      <template #handler="scope">
+      <template #handler="scope" v-if="role === 1">
         <div class="handler">
           <el-link
             type="primary"
@@ -61,11 +61,19 @@ export default {
       require: true
     }
   },
+  data() {
+    return {
+      role: 0
+    }
+  },
   computed: {
     otherPropSlots() {
       const others = this.slotNameFilter()
       return others
     }
+  },
+  created() {
+    this.role = this.$store.state.userInfo.role.id
   },
   methods: {
     // 过滤普通的插槽

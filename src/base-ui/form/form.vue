@@ -32,6 +32,16 @@
                 >
                 </el-input>
               </template>
+              <!-- textarea -->
+              <template v-else-if="item.type === 'textarea'">
+                <el-input
+                  type="textarea"
+                  :placeholder="item.placeholder"
+                  v-bind="item.otherOptions"
+                  :style="`width: ${inputStyle}`"
+                  v-model="modValue[`${item.field}`]"
+                ></el-input>
+              </template>
               <!-- select表单 -->
               <template v-else-if="item.type === 'select'">
                 <el-select
@@ -39,6 +49,7 @@
                   v-bind="item.otherOptions"
                   :style="`width: ${inputStyle}`"
                   v-model="modValue[`${item.field}`]"
+                  clearable
                 >
                   <el-option
                     v-for="option in item.options"

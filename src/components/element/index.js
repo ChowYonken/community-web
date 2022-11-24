@@ -36,7 +36,8 @@ import {
   RadioGroup,
   Table,
   TableColumn,
-  Pagination
+  Pagination,
+  Dialog
 } from 'element-ui'
 
 const coms = [
@@ -75,7 +76,8 @@ const coms = [
   RadioGroup,
   Table,
   TableColumn,
-  Pagination
+  Pagination,
+  Dialog
 ]
 
 Vue.prototype.$message = Message
