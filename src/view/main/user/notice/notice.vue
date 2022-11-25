@@ -27,51 +27,26 @@
         </template>
       </page-content>
     </el-card>
-    <!-- 弹窗 -->
-    <page-modal
-      ref="modal"
-      :modalConfig="modalConfig"
-      :dialogVisible="dialogVisible"
-      :dialogTitle="dialogTitle"
-      :editData="editData"
-      @changeDialog="changeDialog"
-      @closeDialog="closeDialog"
-      @confirmDialog="confirmDialog"
-    ></page-modal>
   </div>
 </template>
 
 <script>
 import PageSearch from '@/components/search/search.vue'
 import PageContent from '@/components/content/content.vue'
-import PageModal from '@/components/modal/modal.vue'
 import { searchFormConfig } from './config/search-config'
 import { contentTableConfig } from './config/content-config'
-import { modalConfig } from './config/modal-config'
-import {
-  getNoticeLit,
-  getNoticeTotal,
-  addNotice,
-  updateNotice,
-  deleteNotice,
-  queryNotice
-} from '@/network/api/notice'
+import { getNoticeLit, getNoticeTotal, queryNotice } from '@/network/api/notice'
 
 export default {
   components: {
     PageSearch,
-    PageContent,
-    PageModal
+    PageContent
   },
   data() {
     return {
       searchFormConfig: {},
       contentTableConfig: {},
-      modalConfig: {},
       dataList: [],
-      dialogVisible: false,
-      dialogTitle: '',
-      editData: {}, // 编辑的数据
       listCount: 0, // 总数
       offset: 1,
       limit: 5
@@ -88,7 +63,6 @@ export default {
   created() {
     this.searchFormConfig = searchFormConfig
     this.contentTableConfig = contentTableConfig
-    this.modalConfig = modalConfig
     // 请求列表数据
     this._getNoticeLit()
     // 获取总数
@@ -130,36 +104,6 @@ export default {
           console.log(err)
         })
     },
-    // 添加
-    _addNotice(title, content, priority) {
-      addNotice(title, content, priority)
-        .then((res) => {
-          console.log(res)
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-    },
-    // 修改
-    _updateNotice(noticeId, title, content, priority) {
-      updateNotice(noticeId, title, content, priority)
-        .then((res) => {
-          console.log(res)
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-    },
-    // 删除
-    _deleteNotice(noticeId) {
-      deleteNotice(noticeId)
-        .then((res) => {
-          console.log(res)
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-    },
     // 搜索
     _queryNotice(priority, timeStart, timeEnd) {
       queryNotice(this.offset, this.limit, priority, timeStart, timeEnd)
@@ -179,41 +123,9 @@ export default {
         this._queryNotice(priority, timeStart, timeEnd)
       }
     },
-    // 新建
-    handleNewData() {
-      this.editData = {}
-      this.dialogTitle = '新建'
-      this.dialogVisible = true
-      this.$refs.modal.getFormData()
-    },
-    // 编辑
-    handleEditData(item) {
-      this.dialogTitle = '编辑'
-      this.dialogVisible = true
-      this.editData = item
-      this.$refs.modal.editMapData(item)
-    },
-    // 删除
-    handleDeleteData(item) {
-      console.log('删除的数据：', item)
-    },
     // 重置
     resetBtnClick() {
       this._getNoticeLit()
-    },
-    // 修改dialog
-    changeDialog(val) {
-      this.dialogVisible = val
-    },
-    // 监听dialog取消按钮
-    closeDialog() {
-      this.dialogVisible = false
-    },
-    // 监听确定按钮
-    confirmDialog(formData) {
-      this.dialogVisible = false
-      const { id } = this.editData
-      const { title, content, priority } = formData
     }
   }
 }
