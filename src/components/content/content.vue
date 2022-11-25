@@ -15,7 +15,11 @@
         >
           重置
         </el-button>
-        <el-button type="primary" @click="handleNewClick" v-if="role === 1">
+        <el-button
+          type="primary"
+          @click="handleNewClick"
+          v-if="role === 1 && contentTableConfig.showAddBtn"
+        >
           {{ contentTableConfig.newBtnTitle ?? '新建数据' }}
         </el-button>
       </template>
