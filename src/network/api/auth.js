@@ -27,3 +27,12 @@ export function logout() {
     url: '/logout'
   })
 }
+
+// 修改密码
+export function updatePwd(oldPwd, newPwd) {
+  return request({
+    url: '/updatePwd',
+    method: 'post',
+    data: { oldPwd, newPwd }
+  })
+}
