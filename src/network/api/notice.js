@@ -10,10 +10,15 @@ export function getNoticeLit(offset, limit) {
 }
 
 // 获取公告总数
-export function getNoticeTotal(offset, limit) {
+export function getNoticeTotal(priority, timeStart, timeEnd) {
   return request({
     url: '/main/notice/total',
-    method: 'get'
+    method: 'post',
+    data: {
+      priority,
+      timeStart,
+      timeEnd
+    }
   })
 }
 

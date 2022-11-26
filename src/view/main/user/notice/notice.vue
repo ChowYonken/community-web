@@ -13,9 +13,6 @@
         :contentTableConfig="contentTableConfig"
         :dataList="dataList"
         :listCount="listCount"
-        @newBtnClick="handleNewData"
-        @editBtnClick="handleEditData"
-        @deleteBtnClick="handleDeleteData"
         @resetBtnClick="resetBtnClick"
       >
         <template #priority="scope">
@@ -89,16 +86,18 @@ export default {
       getNoticeLit(this.offset, this.limit)
         .then((res) => {
           this.dataList = res.data.data
+          console.log(this.dataList)
         })
         .catch((err) => {
           console.log(err)
         })
     },
     // 获取总数
-    _getNoticeTotal() {
-      getNoticeTotal()
+    _getNoticeTotal(priority, timeStart, timeEnd) {
+      getNoticeTotal(priority, timeStart, timeEnd)
         .then((res) => {
           this.listCount = res.data.data.total
+          console.log(this.listCount)
         })
         .catch((err) => {
           console.log(err)
@@ -109,6 +108,7 @@ export default {
       queryNotice(this.offset, this.limit, priority, timeStart, timeEnd)
         .then((res) => {
           this.dataList = res.data.data
+          console.log(this.dataList)
         })
         .catch((err) => {
           console.log(err)
@@ -121,11 +121,15 @@ export default {
       const timeEnd = formData.timeRange[1] ?? ''
       if (priority !== '' || timeStart !== '') {
         this._queryNotice(priority, timeStart, timeEnd)
+        // 请求总数
+        this._getNoticeTotal(priority, timeStart, timeEnd)
       }
     },
     // 重置
     resetBtnClick() {
       this._getNoticeLit()
+      // 获取总数
+      this._getNoticeTotal()
     }
   }
 }
