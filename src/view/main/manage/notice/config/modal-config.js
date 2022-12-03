@@ -1,5 +1,5 @@
 export const modalConfig = {
-  title: '用户',
+  title: '公告',
   colLayout: { span: 24 },
   itemLayout: {},
   labelWidth: '60px',

@@ -40,6 +40,7 @@ export function updateNotice(noticeId, title, content, priority) {
   })
 }
 
+// 删除公告
 export function deleteNotice(noticeId) {
   return request({
     url: '/main/manage/notice/' + noticeId,

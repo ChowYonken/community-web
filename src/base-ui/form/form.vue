@@ -14,6 +14,7 @@
         <template v-for="item in formItems">
           <el-col v-bind="colLayout">
             <el-form-item
+              v-if="!item.isHidden"
               :label="item.label"
               :style="itemLayout"
               :prop="item.field"

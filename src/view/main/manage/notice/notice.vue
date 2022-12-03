@@ -110,6 +110,7 @@ export default {
     this.$bus.$off('currentChange')
   },
   methods: {
+    // 网络请求
     // 请求列表数据
     _getNoticeLit() {
       getNoticeLit(this.offset, this.limit)
@@ -121,8 +122,8 @@ export default {
         })
     },
     // 获取总数
-    _getNoticeTotal() {
-      getNoticeTotal()
+    _getNoticeTotal(priority, timeStart, timeEnd) {
+      getNoticeTotal(priority, timeStart, timeEnd)
         .then((res) => {
           this.listCount = res.data.data.total
         })
@@ -209,6 +210,8 @@ export default {
           console.log(err)
         })
     },
+
+    // 按钮操作
     // 搜索提交
     handleSubmitClick(formData) {
       const { priority } = formData
@@ -216,6 +219,7 @@ export default {
       const timeEnd = formData.timeRange[1] ?? ''
       if (priority !== '' || timeStart !== '') {
         this._queryNotice(priority, timeStart, timeEnd)
+        this._getNoticeTotal(priority, timeStart, timeEnd)
       }
     },
     // 新建
@@ -240,7 +244,10 @@ export default {
     // 重置
     resetBtnClick() {
       this._getNoticeLit()
+      this._getNoticeTotal()
     },
+
+    // dialog弹窗
     // 修改dialog
     changeDialog(val) {
       this.dialogVisible = val
