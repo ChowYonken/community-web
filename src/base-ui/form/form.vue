@@ -30,6 +30,7 @@
                   :style="`width: ${inputStyle}`"
                   :disabled="item.disabled"
                   v-model="modValue[`${item.field}`]"
+                  clearable
                 >
                 </el-input>
               </template>

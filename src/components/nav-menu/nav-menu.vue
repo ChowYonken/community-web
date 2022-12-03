@@ -1,5 +1,9 @@
 <template>
   <div class="nav-menu">
+    <div class="logo">
+      <img class="img" src="../../assets/images/logo.svg" alt="" />
+      <span class="title" v-if="!isCollapse">社区疫情防控管理</span>
+    </div>
     <el-menu
       :default-active="defaultActive"
       class="el-menu-vertical"
@@ -71,6 +75,26 @@ export default {
 .nav-menu {
   width: 300px;
   height: 100%;
+}
+
+.logo {
+  display: flex;
+  height: 28px;
+  padding: 12px 10px 8px 10px;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.logo .img {
+  height: 100%;
+  margin: 0 5px;
+}
+
+.logo .title {
+  font-size: 18px;
+  color: #fff;
+  font-weight: 700;
 }
 
 .iconfont {
