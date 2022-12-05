@@ -38,7 +38,8 @@ import {
   TableColumn,
   Pagination,
   Dialog,
-  Switch
+  Switch,
+  Popover
 } from 'element-ui'
 
 const coms = [
@@ -79,7 +80,8 @@ const coms = [
   TableColumn,
   Pagination,
   Dialog,
-  Switch
+  Switch,
+  Popover
 ]
 
 Vue.prototype.$message = Message
