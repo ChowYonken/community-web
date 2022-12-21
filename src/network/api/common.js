@@ -13,3 +13,17 @@ export function getNewNotice() {
     url: '/main/notice/new'
   })
 }
+
+// 获取体温范围数量
+export function getTempCounts() {
+  return request({
+    url: '/main/temp/counts'
+  })
+}
+
+// 查询设备好坏数量
+export function getDeviceCounts() {
+  return request({
+    url: '/main/device/counts'
+  })
+}
