@@ -246,7 +246,6 @@ export default {
     // 按钮操作
     // 搜索提交
     handleSubmitClick(formData) {
-      console.log(formData)
       const { realname, address } = formData
       if (realname || address) {
         this._queryUser(realname, address)
