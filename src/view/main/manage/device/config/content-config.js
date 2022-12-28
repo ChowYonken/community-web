@@ -1,6 +1,6 @@
 export const contentTableConfig = {
-  title: '用户列表',
-  newBtnTitle: '新建用户',
+  title: '设备列表',
+  newBtnTitle: '新建设备',
   propList: [
     { prop: 'name', label: '设备名', minWidth: '120' },
     {
